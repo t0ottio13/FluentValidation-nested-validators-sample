@@ -19,11 +19,6 @@ public class OrderValidator : AbstractValidator<Order>
             .NotEmpty()
             .EmailAddress();
 
-        RuleFor(model => model.Status)
-            .NotNull()
-            .NotEmpty()
-            .IsInEnum();
-
         // ネストされた配列データに対するバリデーション
         RuleForEach(model => model.Product)
             .NotNull()
