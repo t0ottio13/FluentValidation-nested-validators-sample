@@ -1,3 +1,4 @@
+// 追加
 using WebApplication1.Models;
 using FluentValidation;
 using FluentValidation.Results;
@@ -12,7 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// 注文用のバリデーターを登録
+// 追加
+// Orderのバリデーターを登録
 builder.Services.AddScoped<IValidator<Order>, OrderValidator>();
 
 var app = builder.Build();
@@ -28,7 +30,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-// OrderAPIを定義
+// 追加
+// 検証用APIを定義
 app.MapPost("/api/orders", async (IValidator<Order> validator, Order order) =>
 {
     if (order == null) return Results.BadRequest();
